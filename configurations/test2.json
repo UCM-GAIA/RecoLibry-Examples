@@ -1,0 +1,84 @@
+{
+	"generateClass": {
+		"packageName": "es.ucm.fdi.gaia.examples.test2",
+		"className": "MovieDescription",
+		"attributes": [
+			{
+				"name": "id",
+				"type": "Integer"
+			},
+			{
+				"name": "title",
+				"type": "String"
+			}
+		],
+		"attributeList": [
+			{
+				"name": "genres",
+				"type": "String"
+			}
+		]
+	},
+
+	"configure": [
+		{
+			"type": "Class",
+			"bind": "es.ucm.fdi.gaia.recolibry.api.RecommenderAlgorithm",
+			"annotated": null,
+			"to": "es.ucm.fdi.gaia.recolibry.implementations.jcolibri.RecommenderJColibri"
+		},
+		{
+			"type": "Class",
+			"bind": "es.ucm.fdi.gaia.recolibry.api.Query",
+			"annotated": null,
+			"to": "es.ucm.fdi.gaia.recolibry.implementations.jcolibri.QueryJColibri"
+		},
+		{
+			"type": "Instance",
+			"bind": "java.lang.String",
+			"annotated": "BeanClass",
+			"to": "es.ucm.fdi.gaia.examples.test2.MovieDescription"
+		},
+		{
+			"type": "Instance",
+			"bind": "java.lang.String",
+			"annotated": "fileName",
+			"to": "./data/movies.csv"
+		},
+		{
+			"type": "Instance",
+			"bind": "java.lang.Boolean",
+			"annotated": "existTitleRow",
+			"to": true
+		},
+		{
+			"type": "Class",
+			"bind": "es.ucm.fdi.gaia.jcolibri.cbrcore.Connector",
+			"annotated": null,
+			"to": "es.ucm.fdi.gaia.recolibry.implementations.jcolibri.CSVConnector"
+		},
+		{
+			"type": "Instance",
+			"bind": "java.lang.Integer",
+			"annotated": "N-Results",
+			"to": 10
+		},
+		{
+			"type": "Class",
+			"bind": "es.ucm.fdi.gaia.jcolibri.method.retrieve.NNretrieval.similarity.GlobalSimilarityFunction",
+			"annotated": null,
+			"to": "es.ucm.fdi.gaia.jcolibri.method.retrieve.NNretrieval.similarity.global.Average"
+		},
+		{
+			"type": "LocalSimilarity",
+			"bind": "LocalSimilarityConfiguration",
+			"annotated": null,
+			"to": null,
+			"similarities": [{
+				"attribute": "genres",
+				"class": "es.ucm.fdi.gaia.examples.test2.MovieDescription",
+				"similarities": "es.ucm.fdi.gaia.examples.test1.GenresSimilarity"
+			}]
+		}
+	]
+}

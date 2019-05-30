@@ -20,6 +20,7 @@ public class Test2RecSys {
 	  // Return recommender system
 	  return factory.getRecommender();
 			
+	  
 	}
 	
 	public static void main(String[] args) {

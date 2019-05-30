@@ -1,8 +1,5 @@
 package es.ucm.fdi.gaia.examples.test3;
 
-import java.io.File;
-
-import org.apache.mahout.cf.taste.model.DataModel;
 import org.apache.mahout.cf.taste.neighborhood.UserNeighborhood;
 import org.apache.mahout.cf.taste.similarity.UserSimilarity;
 
@@ -15,7 +12,7 @@ import es.ucm.fdi.gaia.recolibry.implementations.mahout.cfUser.MahoutCFUserQuery
 import es.ucm.fdi.gaia.recolibry.implementations.mahout.cfUser.MahoutUserNeighborhood;
 import es.ucm.fdi.gaia.recolibry.implementations.mahout.cfUser.MahoutUserSimilarity;
 import es.ucm.fdi.gaia.recolibry.implementations.mahout.cfUser.RecommenderMahoutCFUser;
-import es.ucm.fdi.gaia.recolibry.implementations.mahout.models.MahoutFileDataModel;
+import es.ucm.fdi.gaia.recolibry.implementations.mahout.models.DataModelFactory;
 
 public class Test3Configuration extends RecSysConfiguration{
 
@@ -25,11 +22,11 @@ public class Test3Configuration extends RecSysConfiguration{
     @Override
     protected void configure() {
 
-        File file = new File(System.getProperty("user.dir") + "/data/ratings.csv");
+        String path = System.getProperty("user.dir") + "/data/ratings.csv";
 
-        bind(File.class)
+        bind(String.class)
                 .annotatedWith(Names.named("source"))
-                .toInstance(file);
+                .toInstance(path);
 
         bind(String.class)
                 .annotatedWith(Names.named("delimiter"))
@@ -39,8 +36,8 @@ public class Test3Configuration extends RecSysConfiguration{
                 .annotatedWith(Names.named("TypeUserSimilarity"))
                 .toInstance("Euclidean");
 
-        bind(DataModel.class)
-                .to(MahoutFileDataModel.class);
+        bind(Object.class)
+                .to(DataModelFactory.class);
 
         bind(String.class)
                 .annotatedWith(Names.named("TypeNeighborhood"))

@@ -1,0 +1,77 @@
+{
+	"configure": [
+
+		{
+			"type": "Instance",
+			"bind": "java.lang.String",
+			"annotated": "source",
+			"to": "./data/ratings.csv"
+		},
+		{
+			"type": "Instance",
+			"bind": "java.lang.String",
+			"annotated": "delimiter",
+			"to": ","
+		},
+		{
+			"type": "Class",
+			"bind": "java.lang.Object",
+			"annotated": null,
+			"to": "es.ucm.fdi.gaia.recolibry.implementations.mahout.models.DataModelFactory"
+		},
+		{
+			"type": "Instance",
+			"bind": "java.lang.String",
+			"annotated": "TypeUserSimilarity",
+			"to": "Euclidean"
+		},
+		{
+			"type": "Class",
+			"bind": "org.apache.mahout.cf.taste.similarity.UserSimilarity",
+			"annotated": null,
+			"to": "es.ucm.fdi.gaia.recolibry.implementations.mahout.cfUser.MahoutUserSimilarity"
+		},
+		{
+			"type": "Instance",
+			"bind": "java.lang.String",
+			"annotated": "TypeNeighborhood",
+			"to": "NearestN"
+		},
+		{
+			"type": "Instance",
+			"bind": "java.lang.Integer",
+			"annotated": "N-Users",
+			"to": 5
+		},
+		{
+			"type": "Instance",
+			"bind": "java.lang.Double",
+			"annotated": "Threshold",
+			"to": 0.0
+		},
+		{
+			"type": "Class",
+			"bind": "org.apache.mahout.cf.taste.neighborhood.UserNeighborhood",
+			"annotated": null,
+			"to": "es.ucm.fdi.gaia.recolibry.implementations.mahout.cfUser.MahoutUserNeighborhood"
+		},
+		{
+			"type": "Instance",
+			"bind": "java.lang.Integer",
+			"annotated": "numResults",
+			"to": 15
+		},
+		{
+			"type": "Class",
+			"bind": "es.ucm.fdi.gaia.recolibry.api.RecommenderAlgorithm",
+			"annotated": null,
+			"to": "es.ucm.fdi.gaia.recolibry.implementations.mahout.cfUser.RecommenderMahoutCFUser"
+		},
+		{
+			"type": "Class",
+			"bind": "es.ucm.fdi.gaia.recolibry.api.Query",
+			"annotated": null,
+			"to": "es.ucm.fdi.gaia.recolibry.implementations.mahout.cfUser.MahoutCFUserQuery"
+		}
+	]
+}
